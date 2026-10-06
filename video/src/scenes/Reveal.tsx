@@ -1,13 +1,13 @@
 import React from "react";
 import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
-import { Background, clamp, exitP, Flash, LogoMark, prog, useSpring, Words } from "../components";
+import { Background, clamp, exitP, Flash, BrandLogo, prog, useSpring, Words } from "../components";
 import { BODY, C } from "../theme";
 
 // 0–180. Impact on 0.
 export const Reveal: React.FC = () => {
   const frame = useCurrentFrame();
   const mark = useSpring(2, 10, 140);
-  const word = prog(frame, 14, 26);
+  const word = prog(frame, 2, 30);
   const out = exitP(frame, 166, 14);
   const ring = (d: number) => interpolate(frame, [d, d + 40], [0, 1], clamp);
 
@@ -23,32 +23,21 @@ export const Reveal: React.FC = () => {
               width: 300 + ring(d) * 1400,
               height: 300 + ring(d) * 1400,
               borderRadius: "50%",
-              border: `2px solid ${C.violet}`,
+              border: `2px solid ${C.cyan}`,
               opacity: (1 - ring(d)) * 0.6,
             }}
           />
         ))}
 
-        <div style={{ display: "flex", alignItems: "center", gap: 44, marginTop: -60 }}>
-          <div style={{ transform: `scale(${mark}) rotate(${(1 - mark) * -90}deg)` }}>
-            <LogoMark size={190} />
-          </div>
-          <div style={{ overflow: "hidden", paddingBottom: 12 }}>
-            <div
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontWeight: 700,
-                fontSize: 190,
-                letterSpacing: "-0.045em",
-                color: C.ink,
-                lineHeight: 1,
-                clipPath: `inset(0 ${(1 - word) * 100}% 0 0)`,
-                transform: `translateX(${(1 - word) * -40}px)`,
-              }}
-            >
-              Authent<span style={{ color: C.amber }}>IQ</span>
-            </div>
-          </div>
+        <div
+          style={{
+            marginTop: -90,
+            transform: `scale(${0.85 + 0.15 * mark})`,
+            clipPath: `inset(-10% ${(1 - word) * 100}% -10% 0)`,
+            filter: `drop-shadow(0 20px 60px rgba(0,0,40,0.45))`,
+          }}
+        >
+          <BrandLogo width={1150} />
         </div>
 
         <div style={{ position: "absolute", top: 650, display: "flex", flexDirection: "column", alignItems: "center", gap: 28 }}>
@@ -70,11 +59,11 @@ export const Reveal: React.FC = () => {
               color: C.ink,
               padding: "16px 36px",
               borderRadius: 999,
-              background: "rgba(124,92,255,0.18)",
-              border: `1.5px solid ${C.violet}`,
+              background: "rgba(0,255,255,0.10)",
+              border: `1.5px solid ${C.cyan}`,
             }}
           >
-            You record. <span style={{ color: C.amber }}>We handle everything after.</span>
+            You record. <span style={{ color: C.orange }}>We handle everything after.</span>
           </div>
         </div>
       </AbsoluteFill>

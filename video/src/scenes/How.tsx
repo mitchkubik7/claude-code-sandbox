@@ -39,7 +39,7 @@ const RecordArt: React.FC<{ f: number }> = ({ f }) => {
               width: 220 + p * 380,
               height: 220 + p * 380,
               borderRadius: "50%",
-              border: `2px solid ${C.violet}`,
+              border: `2px solid ${C.cyan}`,
               opacity: (1 - p) * 0.5,
             }}
           />
@@ -50,12 +50,12 @@ const RecordArt: React.FC<{ f: number }> = ({ f }) => {
           width: 240,
           height: 240,
           borderRadius: "50%",
-          background: `linear-gradient(135deg, ${C.violet}, #4B2FE0)`,
+          background: `linear-gradient(135deg, #0048D8, ${C.cyan})`,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           transform: `scale(${pulse})`,
-          boxShadow: `0 30px 100px ${C.violet}88`,
+          boxShadow: `0 30px 100px ${C.cyan}88`,
         }}
       >
         <Icons.mic size={120} color={C.ink} stroke={1.6} />
@@ -70,19 +70,19 @@ const RecordArt: React.FC<{ f: number }> = ({ f }) => {
           gap: 12,
           padding: "10px 22px",
           borderRadius: 999,
-          background: "rgba(255,94,91,0.15)",
-          border: `1.5px solid ${C.coral}`,
+          background: "rgba(255,158,24,0.15)",
+          border: `1.5px solid ${C.orange}`,
           fontFamily: BODY,
           fontWeight: 700,
           fontSize: 28,
-          color: C.coral,
+          color: C.orange,
         }}
       >
-        <span style={{ width: 14, height: 14, borderRadius: 7, background: C.coral, opacity: Math.floor(f / 12) % 2 ? 0.3 : 1 }} />
+        <span style={{ width: 14, height: 14, borderRadius: 7, background: C.orange, opacity: Math.floor(f / 12) % 2 ? 0.3 : 1 }} />
         REC
       </div>
       <div style={{ position: "absolute", bottom: 10 }}>
-        <Waveform width={560} height={90} bars={40} color={C.violetSoft} speed={1.4} />
+        <Waveform width={560} height={90} bars={40} color={C.cyan} speed={1.4} />
       </div>
     </div>
   );
@@ -91,10 +91,10 @@ const RecordArt: React.FC<{ f: number }> = ({ f }) => {
 const EditArt: React.FC<{ f: number }> = ({ f }) => {
   const playhead = interpolate(f, [10, 130], [0, 1], { ...clamp, easing: ease });
   const tracks = [
-    { color: C.violet, label: "VIDEO", segs: [[0, 0.22], [0.26, 0.55], [0.6, 1]] },
-    { color: C.amber, label: "AUDIO", segs: [[0, 0.4], [0.44, 0.78], [0.82, 1]] },
-    { color: C.mint, label: "CAPTIONS", segs: [[0.02, 0.18], [0.2, 0.36], [0.4, 0.58], [0.62, 0.8], [0.83, 0.98]] },
-    { color: C.coral, label: "CLIPS", segs: [[0.12, 0.3], [0.5, 0.66], [0.78, 0.94]] },
+    { color: C.cyan, label: "VIDEO", segs: [[0, 0.22], [0.26, 0.55], [0.6, 1]] },
+    { color: C.orange, label: "AUDIO", segs: [[0, 0.4], [0.44, 0.78], [0.82, 1]] },
+    { color: C.cyan, label: "CAPTIONS", segs: [[0.02, 0.18], [0.2, 0.36], [0.4, 0.58], [0.62, 0.8], [0.83, 0.98]] },
+    { color: C.orange, label: "CLIPS", segs: [[0.12, 0.3], [0.5, 0.66], [0.78, 0.94]] },
   ];
   const W = 600;
   return (
@@ -103,14 +103,14 @@ const EditArt: React.FC<{ f: number }> = ({ f }) => {
         width: 680,
         padding: 36,
         borderRadius: 28,
-        background: "rgba(20,18,32,0.9)",
+        background: "rgba(0,10,90,0.82)",
         border: `1.5px solid ${C.stroke}`,
         boxShadow: "0 40px 120px rgba(0,0,0,0.55)",
         position: "relative",
       }}
     >
       <div style={{ display: "flex", gap: 10, marginBottom: 28 }}>
-        {[C.coral, C.amber, C.mint].map((c) => (
+        {[C.orange, C.orange, C.cyan].map((c) => (
           <span key={c} style={{ width: 14, height: 14, borderRadius: 7, background: c }} />
         ))}
       </div>
@@ -160,10 +160,10 @@ const EditArt: React.FC<{ f: number }> = ({ f }) => {
 const PublishArt: React.FC<{ f: number }> = ({ f }) => {
   const { fps } = useVideoConfig();
   const nodes: { icon: keyof typeof Icons; x: number; y: number; label: string; c: string }[] = [
-    { icon: "play", x: -230, y: -170, label: "YouTube", c: C.coral },
-    { icon: "headphones", x: 230, y: -170, label: "Audio platforms", c: C.violetSoft },
-    { icon: "phone", x: -230, y: 170, label: "Short clips", c: C.amber },
-    { icon: "calendar", x: 230, y: 170, label: "Scheduled", c: C.mint },
+    { icon: "play", x: -230, y: -170, label: "YouTube", c: C.orange },
+    { icon: "headphones", x: 230, y: -170, label: "Audio platforms", c: C.cyan },
+    { icon: "phone", x: -230, y: 170, label: "Short clips", c: C.orange },
+    { icon: "calendar", x: 230, y: 170, label: "Scheduled", c: C.cyan },
   ];
   return (
     <div style={{ position: "relative", width: 700, height: 600 }}>
@@ -194,11 +194,11 @@ const PublishArt: React.FC<{ f: number }> = ({ f }) => {
           width: 180,
           height: 180,
           borderRadius: 48,
-          background: `linear-gradient(135deg, ${C.violet}, #4B2FE0)`,
+          background: `linear-gradient(135deg, #0048D8, ${C.cyan})`,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          boxShadow: `0 30px 90px ${C.violet}88`,
+          boxShadow: `0 30px 90px ${C.cyan}88`,
         }}
       >
         <Icons.mic size={90} />
@@ -226,7 +226,7 @@ const PublishArt: React.FC<{ f: number }> = ({ f }) => {
                 width: 110,
                 height: 110,
                 borderRadius: 30,
-                background: "rgba(22,20,34,0.95)",
+                background: "rgba(0,10,90,0.82)",
                 border: `2px solid ${n.c}`,
                 display: "flex",
                 alignItems: "center",
@@ -259,7 +259,7 @@ export const How: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ opacity: out }}>
-      <Background hue={[C.violet, C.amber, C.mint][idx]} hue2={C.violet} />
+      <Background hue={[C.cyan, C.orange, C.cyan][idx]} hue2={C.cyan} />
 
       <div style={{ position: "absolute", top: 90, left: 140 }}>
         <Label start={2}>How it works</Label>
@@ -271,7 +271,7 @@ export const How: React.FC = () => {
           style={{
             width: 6,
             borderRadius: 3,
-            background: `linear-gradient(${C.violet}, ${C.amber})`,
+            background: `linear-gradient(${C.cyan}, ${C.orange})`,
             height: `${interpolate(frame, [0, 400], [8, 100], clamp)}%`,
           }}
         />
@@ -286,8 +286,8 @@ export const How: React.FC = () => {
               height: 24,
               borderRadius: 12,
               marginTop: -12,
-              background: i <= idx ? C.amber : C.bg2,
-              border: `3px solid ${i <= idx ? C.amber : C.stroke}`,
+              background: i <= idx ? C.orange : C.bg2,
+              border: `3px solid ${i <= idx ? C.orange : C.stroke}`,
             }}
           />
         ))}
@@ -312,14 +312,14 @@ export const How: React.FC = () => {
               fontSize: 150,
               lineHeight: 1,
               color: "transparent",
-              WebkitTextStroke: `2px ${C.violetSoft}`,
+              WebkitTextStroke: `2px ${C.cyan}`,
               opacity: prog(local, 0, 20),
               transform: `translateX(${(1 - prog(local, 0, 20)) * -40}px)`,
             }}
           >
             {step.n}
           </div>
-          <Words text={step.title} start={6} size={92} style={{ maxWidth: 900 }} highlight={{ everything: C.amber, Everywhere: C.amber }} />
+          <Words text={step.title} start={6} size={92} style={{ maxWidth: 900 }} highlight={{ everything: C.orange, Everywhere: C.orange }} />
           <div
             style={{
               fontFamily: BODY,

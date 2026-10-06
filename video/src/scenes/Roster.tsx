@@ -11,14 +11,14 @@ export const Roster: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ opacity: out }}>
-      <Background hue={C.amber} hue2={C.violet} />
+      <Background hue={C.orange} hue2={C.cyan} />
       <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", gap: 64 }}>
         <Words
           text="We only take on 10 shows at a time."
           start={0}
           stagger={2}
           size={96}
-          highlight={{ "10": C.amber }}
+          highlight={{ "10": C.orange }}
           style={{ justifyContent: "center" }}
         />
         <div style={{ display: "flex", gap: 28 }}>
@@ -31,17 +31,17 @@ export const Roster: React.FC = () => {
                   width: 104,
                   height: 104,
                   borderRadius: 30,
-                  border: `2.5px solid ${s > 0.5 ? C.amber : C.stroke}`,
-                  background: s > 0.5 ? `${C.amber}22` : "transparent",
+                  border: `2.5px solid ${s > 0.5 ? C.orange : C.stroke}`,
+                  background: s > 0.5 ? `${C.orange}22` : "transparent",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   transform: `scale(${0.8 + 0.2 * s})`,
-                  boxShadow: s > 0.5 ? `0 0 40px ${C.amber}55` : "none",
+                  boxShadow: s > 0.5 ? `0 0 40px ${C.orange}55` : "none",
                   fontFamily: DISPLAY,
                   fontWeight: 700,
                   fontSize: 40,
-                  color: s > 0.5 ? C.amber : C.mute,
+                  color: s > 0.5 ? C.orange : C.mute,
                 }}
               >
                 {i + 1}

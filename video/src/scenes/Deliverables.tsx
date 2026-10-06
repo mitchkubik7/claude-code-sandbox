@@ -4,12 +4,12 @@ import { Background, DrawCheck, exitP, Icons, Label, prog, Words } from "../comp
 import { BODY, C, DISPLAY } from "../theme";
 
 const ITEMS: { icon: keyof typeof Icons; title: string; sub: string; c: string }[] = [
-  { icon: "scissors", title: "Video & audio editing", sub: "Tight, clean, professional", c: C.violetSoft },
-  { icon: "phone", title: "Short-form clips", sub: "Made for social feeds", c: C.amber },
-  { icon: "captions", title: "Captions", sub: "On every video", c: C.mint },
-  { icon: "notes", title: "Show notes", sub: "Written for you", c: C.violetSoft },
-  { icon: "broadcast", title: "Publishing", sub: "YouTube + all audio platforms", c: C.amber },
-  { icon: "calendar", title: "Scheduling", sub: "Consistent, on time", c: C.mint },
+  { icon: "scissors", title: "Video & audio editing", sub: "Tight, clean, professional", c: C.cyan },
+  { icon: "phone", title: "Short-form clips", sub: "Made for social feeds", c: C.orange },
+  { icon: "captions", title: "Captions", sub: "On every video", c: C.cyan },
+  { icon: "notes", title: "Show notes", sub: "Written for you", c: C.cyan },
+  { icon: "broadcast", title: "Publishing", sub: "YouTube + all audio platforms", c: C.orange },
+  { icon: "calendar", title: "Scheduling", sub: "Consistent, on time", c: C.cyan },
 ];
 
 // 0–300. Cards land at 42 + 18i.
@@ -21,7 +21,7 @@ export const Deliverables: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ opacity: out, transform: `scale(${1 + (1 - out) * 0.06})` }}>
-      <Background hue={C.violet} hue2={C.mint} />
+      <Background hue={C.cyan} hue2={C.cyan} />
       <AbsoluteFill style={{ alignItems: "center", paddingTop: 90 }}>
         <Label start={0}>What’s included</Label>
         <div style={{ height: 26 }} />
@@ -29,7 +29,7 @@ export const Deliverables: React.FC = () => {
           text="Everything after the recording. Handled."
           start={6}
           size={84}
-          highlight={{ Handled: C.amber }}
+          highlight={{ Handled: C.orange }}
           style={{ justifyContent: "center", maxWidth: 1600 }}
         />
 
@@ -56,7 +56,7 @@ export const Deliverables: React.FC = () => {
                   display: "flex",
                   alignItems: "center",
                   gap: 26,
-                  background: "rgba(22,20,34,0.88)",
+                  background: "rgba(0,10,90,0.82)",
                   border: `1.5px solid ${C.stroke}`,
                   boxShadow: "0 24px 70px rgba(0,0,0,0.45)",
                   transform: `translateY(${(1 - s) * 80}px) scale(${0.9 + 0.1 * s})`,

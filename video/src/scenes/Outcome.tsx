@@ -17,7 +17,7 @@ export const Outcome: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ opacity: out }}>
-      <Background hue={C.violet} hue2={C.amber} />
+      <Background hue={C.cyan} hue2={C.orange} />
       <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
         {[0, 1, 2, 3].map((i) => {
           const p = ((frame + i * 22) % 88) / 88;
@@ -29,7 +29,7 @@ export const Outcome: React.FC = () => {
                 width: 400 + p * 1500,
                 height: 400 + p * 1500,
                 borderRadius: "50%",
-                border: `1.5px solid ${C.violet}`,
+                border: `1.5px solid ${C.cyan}`,
                 opacity: (1 - p) * 0.35 * prog(frame, 0, 20),
               }}
             />
@@ -42,7 +42,7 @@ export const Outcome: React.FC = () => {
             start={26}
             size={100}
             color={C.mute}
-            highlight={{ heard: C.amber }}
+            highlight={{ heard: C.orange }}
             style={{ justifyContent: "center" }}
           />
         </div>
@@ -64,7 +64,7 @@ export const Outcome: React.FC = () => {
               gap: 20,
               padding: "22px 30px",
               borderRadius: 24,
-              background: "rgba(24,22,38,0.94)",
+              background: "rgba(0,10,90,0.82)",
               border: `1.5px solid ${C.stroke}`,
               boxShadow: "0 24px 70px rgba(0,0,0,0.5)",
               opacity: interpolate(s, [0, 0.3], [0, 1], clamp),

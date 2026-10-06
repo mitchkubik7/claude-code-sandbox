@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
-import { Background, clamp, ease, Flash, LogoMark, prog, useSpring, Words } from "../components";
+import { Background, clamp, ease, Flash, BrandLogo, prog, useSpring, Words } from "../components";
 import { BODY, C, DISPLAY } from "../theme";
 
 // 0–180. Impact on 0, cursor click on 96.
@@ -17,9 +17,9 @@ export const CTA: React.FC = () => {
 
   return (
     <AbsoluteFill>
-      <Background hue={C.violet} hue2={C.amber} />
+      <Background hue={C.cyan} hue2={C.orange} />
       <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", gap: 56, marginTop: -60 }}>
-        <Words text="Ready to make your podcast effortless?" start={4} stagger={3} size={92} highlight={{ effortless: C.amber }} style={{ justifyContent: "center", maxWidth: 1500 }} />
+        <Words text="Ready to make your podcast effortless?" start={4} stagger={3} size={92} highlight={{ effortless: C.orange }} style={{ justifyContent: "center", maxWidth: 1500 }} />
 
         <div style={{ position: "relative" }}>
           <div
@@ -27,7 +27,7 @@ export const CTA: React.FC = () => {
               position: "absolute",
               inset: -20 - ripple * 60,
               borderRadius: 999,
-              border: `3px solid ${C.amber}`,
+              border: `3px solid ${C.orange}`,
               opacity: clicked ? 1 - ripple : 0,
             }}
           />
@@ -38,13 +38,13 @@ export const CTA: React.FC = () => {
               transform: `scale(${btn * press})`,
               padding: "40px 84px",
               borderRadius: 999,
-              background: clicked ? `linear-gradient(135deg, ${C.amber}, #FF8A3D)` : `linear-gradient(135deg, ${C.violet}, #4B2FE0)`,
-              boxShadow: clicked ? `0 30px 100px ${C.amber}77` : `0 30px 100px ${C.violet}88`,
+              background: clicked ? "#FFB547" : C.orange,
+              boxShadow: `0 30px 100px ${C.orange}${clicked ? "AA" : "66"}`,
               fontFamily: DISPLAY,
-              fontWeight: 700,
-              fontSize: 64,
+              fontWeight: 800,
+              fontSize: 60,
               letterSpacing: "-0.02em",
-              color: clicked ? C.bg : C.ink,
+              color: C.blue,
               display: "flex",
               alignItems: "center",
               gap: 26,
@@ -98,12 +98,9 @@ export const CTA: React.FC = () => {
           transform: `translateY(${(1 - footer) * 30}px)`,
         }}
       >
-        <LogoMark size={104} />
-        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-          <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 64, letterSpacing: "-0.04em", color: C.ink, lineHeight: 1 }}>
-            Authent<span style={{ color: C.amber }}>IQ</span>
-          </div>
-          <div style={{ fontFamily: BODY, fontSize: 38, color: C.ink, fontWeight: 600 }}>authentiqmarketing.com</div>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 22 }}>
+          <BrandLogo width={520} />
+          <div style={{ fontFamily: BODY, fontSize: 38, color: C.ink, fontWeight: 600, letterSpacing: "0.02em" }}>authentiqmarketing.com</div>
         </div>
       </div>
       <Flash at={0} />

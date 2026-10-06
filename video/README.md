@@ -22,7 +22,9 @@
 - **[Remotion](https://www.remotion.dev/)** (React → frame-accurate video). Each scene lives in `src/scenes/`. Shared motion primitives are in `src/components.tsx`, and brand colors are in `src/theme.ts`.
 - **`src/timing.json`** is the single source of truth for scene boundaries and SFX cue frames. Both the visuals and the soundtrack read it, so the hits stay locked to the cuts.
 - **Soundtrack**: an original track synthesized in `audio/make_soundtrack.py` (numpy/scipy, 120 BPM, Am–F–C–G). It is royalty-free because no samples were used.
-- **Fonts**: Space Grotesk + Inter (Google Fonts, OFL), vendored in `public/fonts/`.
+- **Branding** follows the AuthentIQ Brand Kit in Canva: orange `#FF9E18` for buttons and accents, a deep blue `#000B8C` → cyan `#00FFFF` gradient, and white text. The tokens are in `src/theme.ts`.
+- **Logo**: `public/logo-white.png` (the official white logo from Google Drive → AuthentIQ / 01 Our Brand / Assets / Logo Files).
+- **Fonts**: Montserrat (Google Fonts, OFL), vendored in `public/fonts/`. The brand's headline font, Messenger, appears only through the logo PNG.
 
 ## Commands
 
@@ -37,7 +39,7 @@ npm run render       # renders out/AuthentIQ-Promo-1080p.mp4
 
 ## Common edits
 
-- **Brand colors**: `C` in `src/theme.ts`.
+- **Brand colors**: `BRAND` / `C` in `src/theme.ts`.
 - **Copy**: the text is inline in each scene file.
-- **Logo**: replace `LogoMark`/`Wordmark` in `src/components.tsx` with an `<Img src={staticFile("logo.svg")} />`.
+- **Logo**: swap `public/logo-white.png` (used by `BrandLogo` in `src/components.tsx`).
 - **Timing**: change `src/timing.json`, then re-run `npm run soundtrack` so the SFX follow.

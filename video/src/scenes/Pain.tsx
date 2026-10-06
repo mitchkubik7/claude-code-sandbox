@@ -28,10 +28,10 @@ export const Pain: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ transform: `scale(${1 - implode * 0.6})`, opacity: 1 - implode, filter: `blur(${implode * 10}px)` }}>
-      <Background hue={C.coral} hue2={C.violet} />
+      <Background hue={C.orange} hue2={C.cyan} dark />
 
       <div style={{ position: "absolute", top: 90, left: 110, opacity: dim }}>
-        <Label start={4} color={C.coral}>
+        <Label start={4} color={C.orange}>
           After every recording…
         </Label>
       </div>
@@ -53,7 +53,7 @@ export const Pain: React.FC = () => {
         }}
       >
         <div style={{ transform: `rotate(${frame * 6}deg)` }}>
-          <Icons.clock size={56} color={C.coral} />
+          <Icons.clock size={56} color={C.orange} />
         </div>
         {`${Math.floor(interpolate(frame, [20, 170], [0, 9], clamp))}h ${String(Math.floor(interpolate(frame, [20, 170], [0, 59], clamp) * 7) % 60).padStart(2, "0")}m`}
       </div>
@@ -75,7 +75,7 @@ export const Pain: React.FC = () => {
               gap: 18,
               padding: "22px 34px",
               borderRadius: 22,
-              background: "rgba(22,20,34,0.92)",
+              background: "rgba(0,10,90,0.82)",
               border: `1.5px solid ${C.stroke}`,
               boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
               fontFamily: BODY,
@@ -85,7 +85,7 @@ export const Pain: React.FC = () => {
               whiteSpace: "nowrap",
             }}
           >
-            <Ico size={40} color={C.coral} />
+            <Ico size={40} color={C.orange} />
             {task.t}
           </div>
         );
@@ -106,8 +106,8 @@ export const Pain: React.FC = () => {
                 fontFamily: DISPLAY,
                 fontWeight: 700,
                 fontSize: 150,
-                letterSpacing: "-0.04em",
-                color: i === 2 ? C.coral : C.ink,
+                letterSpacing: "-0.02em",
+                color: i === 2 ? C.orange : C.ink,
                 opacity: visible ? 1 : 0,
                 transform: `scale(${interpolate(s, [0, 1], [2.4, 1])})`,
                 textShadow: "0 20px 80px rgba(0,0,0,0.6)",

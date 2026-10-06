@@ -13,10 +13,10 @@ export const Hook: React.FC = () => {
 
   return (
     <AbsoluteFill>
-      <Background />
+      <Background dark />
       <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
         <div style={{ position: "absolute", bottom: 120, opacity: 0.55 * waveIn * out2 }}>
-          <Waveform width={1400} height={120} bars={70} color={C.violet} intensity={interpolate(frame, [0, 180], [0.4, 1])} />
+          <Waveform width={1400} height={120} bars={70} color={C.cyan} intensity={interpolate(frame, [0, 180], [0.4, 1])} />
         </div>
 
         {frame < 102 && (
@@ -35,7 +35,7 @@ export const Hook: React.FC = () => {
               text="to grow your business."
               start={22}
               size={120}
-              highlight={{ grow: C.amber }}
+              highlight={{ grow: C.orange }}
               style={{ justifyContent: "center" }}
             />
           </div>
@@ -62,9 +62,9 @@ export const Hook: React.FC = () => {
                   top: "52%",
                   height: 12,
                   width: `calc(${strike * 100}% + 20px)`,
-                  background: C.coral,
+                  background: C.orange,
                   borderRadius: 6,
-                  boxShadow: `0 0 30px ${C.coral}`,
+                  boxShadow: `0 0 30px ${C.orange}`,
                   transform: "rotate(-2deg)",
                 }}
               />
@@ -91,9 +91,9 @@ export const Hook: React.FC = () => {
             width: 18,
             height: 18,
             borderRadius: 9,
-            background: C.coral,
+            background: C.orange,
             opacity: Math.floor(frame / 15) % 2 === 0 ? 1 : 0.25,
-            boxShadow: `0 0 18px ${C.coral}`,
+            boxShadow: `0 0 18px ${C.orange}`,
           }}
         />
         REC

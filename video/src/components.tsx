@@ -1,13 +1,15 @@
 import React from "react";
 import {
   AbsoluteFill,
+  Img,
+  staticFile,
   Easing,
   interpolate,
   spring,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { BODY, C, DISPLAY } from "./theme";
+import { BODY, BRAND_GRADIENT, C, DISPLAY } from "./theme";
 
 export const ease = Easing.bezier(0.16, 1, 0.3, 1);
 export const easeIn = Easing.bezier(0.7, 0, 0.84, 0);
@@ -30,29 +32,30 @@ export const exitP = (frame: number, start: number, dur = 12) =>
 
 /* ---------- Background ---------- */
 
-export const Background: React.FC<{ hue?: string; hue2?: string }> = ({
-  hue = C.violet,
-  hue2 = C.amber,
+export const Background: React.FC<{ hue?: string; hue2?: string; dark?: boolean }> = ({
+  hue = C.cyan,
+  hue2 = C.orange,
+  dark = false,
 }) => {
   const frame = useCurrentFrame();
   const t = frame / 30;
-  const x1 = 30 + Math.sin(t * 0.35) * 12;
-  const y1 = 30 + Math.cos(t * 0.27) * 10;
-  const x2 = 72 + Math.cos(t * 0.31) * 10;
-  const y2 = 74 + Math.sin(t * 0.22) * 8;
+  const x1 = 78 + Math.sin(t * 0.35) * 10;
+  const y1 = 22 + Math.cos(t * 0.27) * 10;
+  const x2 = 18 + Math.cos(t * 0.31) * 10;
+  const y2 = 82 + Math.sin(t * 0.22) * 8;
   return (
-    <AbsoluteFill style={{ backgroundColor: C.bg, overflow: "hidden" }}>
+    <AbsoluteFill style={{ background: BRAND_GRADIENT, overflow: "hidden" }}>
       <AbsoluteFill
         style={{
-          background: `radial-gradient(circle at ${x1}% ${y1}%, ${hue}55 0%, transparent 45%),
-                       radial-gradient(circle at ${x2}% ${y2}%, ${hue2}30 0%, transparent 40%)`,
-          filter: "blur(40px)",
+          background: `radial-gradient(circle at ${x1}% ${y1}%, ${hue}55 0%, transparent 42%),
+                       radial-gradient(circle at ${x2}% ${y2}%, ${hue2}26 0%, transparent 38%)`,
+          filter: "blur(30px)",
         }}
       />
       <AbsoluteFill
         style={{
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)",
+            "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
           backgroundSize: "80px 80px",
           backgroundPosition: `0px ${(frame * 0.4) % 80}px`,
           maskImage: "radial-gradient(ellipse at center, black 30%, transparent 75%)",
@@ -61,7 +64,9 @@ export const Background: React.FC<{ hue?: string; hue2?: string }> = ({
       />
       <AbsoluteFill
         style={{
-          background: "radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.65) 100%)",
+          background: dark
+            ? "radial-gradient(ellipse at center, rgba(0,4,40,0.72) 0%, rgba(0,2,24,0.92) 100%)"
+            : "radial-gradient(ellipse at center, transparent 50%, rgba(0,4,50,0.55) 100%)",
         }}
       />
     </AbsoluteFill>
@@ -96,7 +101,7 @@ export const Words: React.FC<WordsProps> = ({
   highlight = {},
   style,
   lineHeight = 1.08,
-  letterSpacing = -0.03,
+  letterSpacing = -0.02,
 }) => {
   const frame = useCurrentFrame();
   const words = text.split(" ");
@@ -142,7 +147,7 @@ export const Words: React.FC<WordsProps> = ({
 export const Label: React.FC<{ children: React.ReactNode; start: number; color?: string }> = ({
   children,
   start,
-  color = C.violetSoft,
+  color = C.cyan,
 }) => {
   const frame = useCurrentFrame();
   const p = prog(frame, start, 20);
@@ -170,55 +175,9 @@ export const Label: React.FC<{ children: React.ReactNode; start: number; color?:
 
 /* ---------- Brand mark ---------- */
 
-/** Logo mark: rounded square holding an animated waveform. */
-export const LogoMark: React.FC<{ size?: number; live?: boolean }> = ({ size = 140, live = true }) => {
-  const frame = useCurrentFrame();
-  const bars = [0.35, 0.7, 1, 0.55, 0.85, 0.45];
-  return (
-    <div
-      style={{
-        width: size,
-        height: size,
-        borderRadius: size * 0.28,
-        background: `linear-gradient(135deg, ${C.violet}, #4B2FE0)`,
-        boxShadow: `0 ${size * 0.15}px ${size * 0.5}px ${C.violet}66, inset 0 1px 0 rgba(255,255,255,0.35)`,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: size * 0.05,
-      }}
-    >
-      {bars.map((b, i) => {
-        const wobble = live ? 0.75 + 0.25 * Math.sin(frame * 0.25 + i * 1.3) : 1;
-        return (
-          <div
-            key={i}
-            style={{
-              width: size * 0.07,
-              height: size * 0.55 * b * wobble,
-              borderRadius: size,
-              background: i === 2 ? C.amber : C.ink,
-            }}
-          />
-        );
-      })}
-    </div>
-  );
-};
-
-export const Wordmark: React.FC<{ size?: number }> = ({ size = 120 }) => (
-  <div
-    style={{
-      fontFamily: DISPLAY,
-      fontWeight: 700,
-      fontSize: size,
-      letterSpacing: "-0.04em",
-      color: C.ink,
-      lineHeight: 1,
-    }}
-  >
-    Authent<span style={{ color: C.amber }}>IQ</span>
-  </div>
+/** Official AuthentIQ logo (white, transparent knock-outs), 2120×364. */
+export const BrandLogo: React.FC<{ width: number; style?: React.CSSProperties }> = ({ width, style }) => (
+  <Img src={staticFile("logo-white.png")} style={{ width, height: (width * 364) / 2120, display: "block", ...style }} />
 );
 
 /* ---------- Waveform ---------- */
@@ -231,7 +190,7 @@ export const Waveform: React.FC<{
   speed?: number;
   seed?: number;
   intensity?: number;
-}> = ({ bars = 48, width, height, color = C.violet, speed = 1, seed = 0, intensity = 1 }) => {
+}> = ({ bars = 48, width, height, color = C.cyan, speed = 1, seed = 0, intensity = 1 }) => {
   const frame = useCurrentFrame();
   const gap = width / bars;
   return (
@@ -339,7 +298,7 @@ export const Icons = {
 };
 
 /** Check mark that draws itself. */
-export const DrawCheck: React.FC<{ p: number; size?: number; color?: string }> = ({ p, size = 40, color = C.mint }) => (
+export const DrawCheck: React.FC<{ p: number; size?: number; color?: string }> = ({ p, size = 40, color = C.cyan }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
     <circle cx="12" cy="12" r="11" fill={color} opacity={Math.min(1, p * 2) * 0.18} />
     <path
