@@ -6,5 +6,5 @@
 - [ ] Use a Claude Code skill
 - [ ] Use an MCP connection
 - [ ] Review the changes
-- [ ] Commit on a branch
+- [x] Commit on a branch
 - [ ] Open a pull request

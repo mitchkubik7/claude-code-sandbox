@@ -1,0 +1,26 @@
+{
+  "name": "authentiq-promo-video",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "soundtrack": "python3 -I audio/make_soundtrack.py",
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts AuthentIQPromo out/AuthentIQ-Promo-1080p.mp4 --audio-codec=aac --audio-bitrate=256k",
+    "stills": "node scripts/stills.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@remotion/bundler": "^4.0.533",
+    "@remotion/cli": "^4.0.533",
+    "@remotion/google-fonts": "^4.0.533",
+    "@remotion/renderer": "^4.0.533",
+    "@types/react": "^18.3.31",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.533",
+    "typescript": "^5.9.3"
+  },
+  "private": true
+}

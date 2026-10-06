@@ -1,0 +1,24 @@
+{
+  "fps": 30,
+  "bpm": 120,
+  "totalFrames": 1800,
+  "scenes": {
+    "hook": { "from": 0, "duration": 180 },
+    "pain": { "from": 180, "duration": 240 },
+    "reveal": { "from": 420, "duration": 180 },
+    "how": { "from": 600, "duration": 420 },
+    "deliverables": { "from": 1020, "duration": 300 },
+    "outcome": { "from": 1320, "duration": 180 },
+    "roster": { "from": 1500, "duration": 120 },
+    "cta": { "from": 1620, "duration": 180 }
+  },
+  "sfx": {
+    "whoosh": [96, 174, 414, 596, 736, 876, 1016, 1316, 1496, 1616],
+    "impact": [420, 1620],
+    "slam": [355, 370, 385],
+    "pop": [212, 226, 240, 254, 268, 282, 296, 310, 324, 1062, 1080, 1098, 1116, 1134, 1152],
+    "tick": [1380, 1410, 1440],
+    "blip": [1520, 1527, 1534, 1541, 1548, 1555, 1562, 1569, 1576, 1583],
+    "click": [1716]
+  }
+}
