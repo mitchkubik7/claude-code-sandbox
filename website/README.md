@@ -1,18 +1,20 @@
-# AuthentIQ homepage redesign (draft)
+# AuthentIQ homepage redesign
 
-`index.html` is a single, self-contained draft of the new homepage. Open it in a browser to preview it.
+`index.html` is the complete new homepage in one self-contained file (about 390 KB). The brand font,
+logo and team photos are embedded, and only Montserrat and JetBrains Mono load from Google Fonts.
 
-**Goal:** turn more visitors into discovery calls. Every orange button leads to the booking section.
+## Deploy
+Replace `index.html` in the repo Vercel deploys (currently `mitch-kubik/authentiq-website`) with this file.
+On GitHub: open the repo → **Add file → Upload files** → drop in `index.html` → **Commit**. Vercel redeploys on its own.
 
-## Before this goes live
-Search the file for `DRAFT` and fill these in:
-- Real booking link (Calendly or similar), on the "Pick a time" button
-- Number of open spots on the roster
-- Three real client testimonials with names and show names
-- Optional: a "plans start at $X/mo" line in the FAQ
-- Confirm you take brand-new shows (FAQ)
+## What's on the page
+- Offer: done-for-you podcast production + show strategy (new)
+- Every booking button goes to Grant's TidyCal: https://tidycal.com/grant/30-minute-video-meeting
+- Real material carried over from the current site: Messenger brand font, logo (now a sharp vector),
+  Grant / Mitch / Bridget photos and bios, three client testimonials, Terms and Privacy links
+- Proof points: 1,000+ episodes, 4–5 year client partnerships, 10-show roster cap, month-to-month
 
-## Brand
-- Colors: orange `#FF9E18` (buttons, highlights), deep blue `#000B8C` + cyan `#00FFFF` (gradient), white text
-- Font: Montserrat. The headline font in the brand kit (Messenger) isn't on Google Fonts, so the logo is rebuilt in code.
-  To use the real logo file, save `Logo White.png` from Drive as `assets/logo-white.png` and swap it into the `.logo` element.
+## Worth checking before launch
+- The client testimonials came from the LinkedIn-video version of the site. Swap in podcast clients if you have them.
+- Platforms in the publishing card (YouTube, Spotify, Apple Podcasts, social clips) and the team roles.
+- The episode console in the hero is an illustrative example (labelled "Example").
