@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AuthentIQ Homepage</title>
+<meta name="description" content="Done-for-you podcast production and show strategy for business owners. You record. AuthentIQ handles everything after.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: one long sales page on the brand's deep-blue ground. Gradient (blue to cyan) is reserved for the hero
+   and the final call band; orange is reserved for anything that books a call. */
+:root {
+  color-scheme: dark;
+  --navy-900: #00064A;   /* page ground, from brand deep blue */
+  --navy-800: #000B8C;   /* brand deep blue */
+  --navy-700: #0A1A9E;
+  --panel:    #0B1466;   /* raised panels */
+  --line:     rgba(174, 185, 238, 0.22);
+  --cyan:     #00FFFF;   /* brand cyan */
+  --orange:   #FF9E18;   /* brand orange: buttons + highlights */
+  --orange-hi:#FFB547;
+  --white:    #FFFFFF;
+  --ink:      #FFFFFF;
+  --mute:     #AEB9EE;   /* blue-biased neutral for body copy */
+  --ok:       #3DDC97;
+  --gradient: linear-gradient(125deg, #000B8C 0%, #0048D8 48%, #00C8F0 88%, #00FFFF 100%);
+  --display:  "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --body:     "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --mono:     "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --wrap: 1120px;
+  --radius: 14px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+body {
+  margin: 0; background: var(--navy-900); color: var(--ink);
+  font-family: var(--body); font-size: 17px; line-height: 1.6; font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: 20px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.08; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+h2 { font-size: clamp(30px, 4.4vw, 48px); font-weight: 900; }
+h3 { font-size: 20px; font-weight: 800; }
+p { margin: 0; }
+.eyebrow { font-family: var(--mono); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); font-weight: 700; }
+.hl { color: var(--orange); }
+.lead { font-size: clamp(18px, 2vw, 21px); color: var(--mute); max-width: 60ch; }
+
+/* Draft notes: visible only so you know what still needs real info */
+.draft { font-family: var(--mono); font-size: 12px; color: var(--navy-900); background: var(--orange-hi); border-radius: 4px; padding: 2px 6px; font-weight: 700; letter-spacing: 0.02em; }
+.draft-bar { background: var(--orange-hi); color: var(--navy-900); font-size: 13px; font-weight: 700; text-align: center; padding: 8px 16px; }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; font-family: var(--display); font-weight: 800; font-size: 16px; text-decoration: none; border-radius: 999px; padding: 16px 28px; transition: transform .15s ease, background .15s ease, box-shadow .15s ease; cursor: pointer; border: 0; }
+.btn-primary { background: var(--orange); color: var(--navy-900); box-shadow: 0 10px 30px -10px rgba(255, 158, 24, .7); }
+.btn-primary:hover { background: var(--orange-hi); transform: translateY(-2px); }
+.btn-ghost { color: var(--white); border: 2px solid rgba(255,255,255,.55); }
+.btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,.08); }
+.btn .arrow { transition: transform .15s ease; }
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* Logo: rebuilt from the brand mark (AUTHENT knocked out of a white box, IQ beside it).
+   To use the real file, replace the .logo contents with <img src="assets/logo-white.png" alt="AuthentIQ"> */
+.logo { display: inline-flex; align-items: stretch; gap: 0.22em; text-decoration: none; font-family: var(--display); font-weight: 900; font-size: 22px; letter-spacing: 0.02em; color: var(--white); line-height: 1; }
+.logo .box { background: var(--white); color: var(--navy-900); padding: 0.14em 0.2em 0.1em; }
+.logo .iq { padding: 0.14em 0 0.1em; }
+.logo img { height: 34px; width: auto; display: block; }
+
+/* Header */
+.site-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(0, 6, 74, .86); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 14px; }
+.nav { display: flex; align-items: center; gap: 28px; font-weight: 600; font-size: 15px; }
+.nav a:not(.btn) { text-decoration: none; color: var(--mute); }
+.nav a:not(.btn):hover { color: var(--white); }
+.nav .btn { padding: 11px 20px; font-size: 14px; }
+.nav .short { display: none; }
+.btn { white-space: nowrap; }
+@media (max-width: 860px) { .nav a:not(.btn) { display: none; } }
+@media (max-width: 480px) { .nav .long { display: none; } .nav .short { display: inline; } .logo { font-size: 19px; } }
+
+/* Hero */
+.hero { background: var(--gradient); position: relative; overflow: hidden; }
+.hero::after { content: ""; position: absolute; inset: auto -10% -40% 40%; height: 80%; background: radial-gradient(closest-side, rgba(255,158,24,.28), transparent); pointer-events: none; }
+.hero .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; padding-block: 72px 84px; position: relative; z-index: 1; }
+.hero h1 { font-size: clamp(40px, 6.4vw, 76px); font-weight: 900; text-transform: uppercase; letter-spacing: -0.015em; }
+.hero h1 .hl { display: inline-block; }
+.hero .lead { color: rgba(255,255,255,.9); margin-top: 22px; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+.hero-note { margin-top: 16px; font-size: 14px; color: rgba(255,255,255,.85); }
+.hero-note strong { color: var(--white); }
+@media (max-width: 920px) { .hero .wrap { grid-template-columns: 1fr; gap: 44px; padding-block: 52px 64px; } }
+
+/* Hero visual: the production board */
+.board { background: rgba(0, 6, 74, .82); border: 1px solid rgba(255,255,255,.18); border-radius: 18px; padding: 22px; box-shadow: 0 30px 60px -20px rgba(0, 0, 40, .7); min-width: 0; }
+.board-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.rec { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--white); letter-spacing: .08em; }
+.rec i { width: 9px; height: 9px; border-radius: 50%; background: #FF5E5B; animation: blink 1.6s infinite; }
+@keyframes blink { 50% { opacity: .25; } }
+.tc { font-family: var(--mono); font-size: 12px; color: var(--mute); font-variant-numeric: tabular-nums; }
+.board h3 { margin-top: 14px; font-size: 18px; }
+.board .sub { font-size: 13px; color: var(--mute); margin-top: 4px; }
+.wave { display: flex; align-items: center; gap: 3px; height: 44px; margin: 18px 0 16px; }
+.wave span { flex: 1; background: linear-gradient(var(--cyan), #0048D8); border-radius: 2px; min-height: 4px; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.steps li { display: grid; grid-template-columns: 24px 1fr auto; gap: 10px; align-items: center; font-size: 14px; font-weight: 600; }
+.steps .who { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; padding: 3px 8px; border-radius: 999px; }
+.who.you { background: var(--orange); color: var(--navy-900); }
+.who.us { background: rgba(0,255,255,.14); color: var(--cyan); }
+.chk { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; font-weight: 900; }
+.chk.done { background: var(--ok); color: var(--navy-900); }
+.chk.wip { border: 2px solid var(--cyan); color: var(--cyan); }
+.board-foot { margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--line); font-size: 13px; color: var(--mute); }
+.board-foot b { color: var(--white); }
+
+/* Proof strip */
+.proof { border-bottom: 1px solid var(--line); background: var(--navy-900); }
+.proof .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding-block: 32px; }
+.stat b { display: block; font-family: var(--display); font-weight: 900; font-size: clamp(26px, 3.2vw, 36px); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 14px; color: var(--mute); }
+@media (max-width: 760px) { .proof .wrap { grid-template-columns: repeat(2, 1fr); } }
+
+section.block { padding-block: 96px; }
+@media (max-width: 760px) { section.block { padding-block: 68px; } }
+.section-head { display: grid; gap: 16px; max-width: 760px; margin-bottom: 48px; }
+
+/* Problem */
+.pains { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.pain { border-top: 3px solid var(--orange); padding-top: 18px; display: grid; gap: 8px; min-width: 0; }
+.pain p { color: var(--mute); }
+@media (max-width: 860px) { .pains { grid-template-columns: 1fr; } }
+
+/* Split: you vs us */
+.split { background: var(--navy-800); }
+.split-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 20px; align-items: stretch; }
+.lane { border-radius: var(--radius); padding: 30px; display: grid; align-content: start; gap: 16px; min-width: 0; }
+.lane.you { background: var(--orange); color: var(--navy-900); }
+.lane.you .eyebrow { color: var(--navy-900); }
+.lane.us { background: var(--navy-900); border: 1px solid var(--line); }
+.lane ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.lane li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; font-weight: 600; }
+.lane.us ul { grid-template-columns: 1fr 1fr; column-gap: 24px; }
+.lane li::before { content: "✓"; font-weight: 900; }
+.lane.us li::before { color: var(--cyan); }
+.lane.you p { font-weight: 600; }
+@media (max-width: 860px) { .split-grid { grid-template-columns: 1fr; } .lane.us ul { grid-template-columns: 1fr; } }
+
+/* Strategy */
+.strategy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.strategy-copy { display: grid; gap: 20px; min-width: 0; }
+.strategy-copy p { color: var(--mute); }
+.qs { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.qs li { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; display: grid; gap: 4px; }
+.qs li b { font-size: 16px; }
+.qs li span { font-size: 14px; color: var(--mute); }
+@media (max-width: 920px) { .strategy-grid { grid-template-columns: 1fr; gap: 36px; } }
+
+/* Show check (interactive) */
+.check { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 28px; display: grid; gap: 18px; min-width: 0; }
+.check-q { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: center; padding-block: 12px; border-bottom: 1px solid var(--line); font-weight: 600; font-size: 15px; }
+.check-q:last-of-type { border-bottom: 0; }
+.toggle { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.toggle button { background: transparent; color: var(--mute); border: 0; font: 700 13px var(--body); padding: 8px 14px; cursor: pointer; }
+.toggle button[aria-pressed="true"].yes { background: var(--ok); color: var(--navy-900); }
+.toggle button[aria-pressed="true"].no { background: var(--orange); color: var(--navy-900); }
+.meter { height: 10px; background: rgba(255,255,255,.1); border-radius: 999px; overflow: hidden; }
+.meter i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--orange), var(--cyan)); transition: width .3s ease; }
+.result { display: grid; gap: 12px; }
+.result b { font-family: var(--display); font-size: 20px; font-weight: 900; }
+.result p { color: var(--mute); font-size: 15px; }
+@media (max-width: 480px) { .check { padding: 20px; } .check-q { grid-template-columns: 1fr; gap: 8px; } }
+
+/* Process */
+.process { background: var(--navy-800); }
+.process-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; counter-reset: step; }
+.process-list li { counter-increment: step; display: grid; gap: 10px; align-content: start; padding: 24px; border-radius: var(--radius); background: var(--navy-900); border: 1px solid var(--line); min-width: 0; }
+.process-list li::before { content: "Step " counter(step); font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--cyan); }
+.process-list p { color: var(--mute); font-size: 15px; }
+.process-list li:last-child { background: var(--orange); color: var(--navy-900); border-color: var(--orange); }
+.process-list li:last-child::before, .process-list li:last-child p { color: var(--navy-900); }
+@media (max-width: 960px) { .process-list { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .process-list { grid-template-columns: 1fr; } }
+
+/* Included */
+.included { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.inc { padding: 26px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: grid; gap: 8px; align-content: start; min-width: 0; }
+.inc:nth-child(3n) { border-right: 0; }
+.inc:nth-last-child(-n+3) { border-bottom: 0; }
+.inc .tag { font-family: var(--mono); font-size: 12px; color: var(--cyan); letter-spacing: .1em; text-transform: uppercase; font-weight: 700; }
+.inc p { color: var(--mute); font-size: 15px; }
+.inc.new { background: rgba(255, 158, 24, .09); }
+.inc.new .tag { color: var(--orange); }
+@media (max-width: 860px) { .included { grid-template-columns: 1fr; } .inc { border-right: 0; } .inc:nth-last-child(-n+3) { border-bottom: 1px solid var(--line); } .inc:last-child { border-bottom: 0; } }
+
+/* Why 10 */
+.cap { background: var(--gradient); border-radius: 22px; padding: 48px; display: grid; grid-template-columns: auto 1fr; gap: 44px; align-items: center; }
+.cap .big { font-family: var(--display); font-weight: 900; font-size: clamp(110px, 16vw, 190px); line-height: .8; color: var(--white); letter-spacing: -0.04em; }
+.cap .big small { display: block; font-size: 15px; letter-spacing: .14em; text-transform: uppercase; margin-top: 12px; font-family: var(--mono); }
+.cap-copy { display: grid; gap: 16px; min-width: 0; }
+.cap-copy p { color: rgba(255,255,255,.92); }
+@media (max-width: 760px) { .cap { grid-template-columns: 1fr; padding: 32px 24px; gap: 20px; } }
+
+/* Testimonials */
+.quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.quote { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; display: grid; gap: 18px; align-content: space-between; min-width: 0; }
+.quote blockquote { margin: 0; font-size: 17px; font-weight: 600; line-height: 1.5; }
+.quote blockquote::before { content: "“"; display: block; font-family: var(--display); font-weight: 900; font-size: 54px; line-height: .6; color: var(--orange); margin-bottom: 10px; }
+.quote figcaption { font-size: 14px; color: var(--mute); display: grid; gap: 4px; }
+.quote figcaption b { color: var(--white); }
+@media (max-width: 960px) { .quotes { grid-template-columns: 1fr; } }
+
+/* Fit */
+.fit { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.fit > div { border-radius: var(--radius); padding: 28px; display: grid; gap: 14px; align-content: start; min-width: 0; }
+.fit .yes { background: var(--navy-800); border: 1px solid var(--line); }
+.fit .no { border: 1px dashed var(--line); }
+.fit ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; color: var(--mute); }
+@media (max-width: 760px) { .fit { grid-template-columns: 1fr; } }
+
+/* FAQ */
+.faq { display: grid; gap: 10px; max-width: 820px; }
+.faq details { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 4px 22px; }
+.faq summary { cursor: pointer; list-style: none; font-weight: 700; padding-block: 16px; display: flex; justify-content: space-between; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-weight: 900; color: var(--orange); font-size: 22px; line-height: 1; }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { color: var(--mute); padding-bottom: 18px; }
+
+/* Book */
+.book { background: var(--gradient); }
+.book .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; padding-block: 88px; }
+.book h2 { font-size: clamp(34px, 5vw, 56px); text-transform: uppercase; }
+.book .lead { color: rgba(255,255,255,.92); margin-top: 18px; }
+.agenda { background: var(--navy-900); border-radius: 18px; padding: 28px; display: grid; gap: 16px; min-width: 0; }
+.agenda ol { margin: 0; padding-left: 20px; display: grid; gap: 10px; color: var(--mute); }
+.agenda ol b { color: var(--white); }
+.agenda .btn { width: 100%; }
+.agenda small { color: var(--mute); text-align: center; font-size: 13px; }
+@media (max-width: 860px) { .book .wrap { grid-template-columns: 1fr; padding-block: 64px; } }
+
+footer { padding-block: 40px 110px; color: var(--mute); font-size: 14px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; }
+
+/* Mobile sticky CTA */
+.mobile-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); background: rgba(0, 6, 74, .94); border-top: 1px solid var(--line); display: none; }
+.mobile-cta .btn { width: 100%; }
+@media (max-width: 760px) { .mobile-cta { display: block; } }
+</style>
+</head>
+<body>
+
+<div class="draft-bar">Draft for review. Items marked <span class="draft" style="background:var(--navy-900);color:var(--orange-hi)">DRAFT</span> need your real details before this goes live.</div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="AuthentIQ home"><span class="box">AUTHENT</span><span class="iq">IQ</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#strategy">Show strategy</a>
+      <a href="#included">What's included</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-primary" href="#book"><span class="long">Book a discovery call</span><span class="short">Book a call</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow" style="color:var(--white)">Done-for-you podcast production</p>
+        <h1 style="margin-top:16px">You hit record.<br><span class="hl">We handle the rest.</span></h1>
+        <p class="lead">AuthentIQ is the production team business owners trust with their show. Editing, clips, captions, publishing and scheduling, plus the strategy that makes every episode worth listening to. You show up and talk. That's the whole job.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#book">Book a discovery call <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="#how">See how it works</a>
+        </div>
+        <p class="hero-note"><strong>Month-to-month. No contracts.</strong> We work with 10 shows at a time.</p>
+      </div>
+
+      <div class="board" aria-label="Example: how one episode moves through production">
+        <div class="board-top">
+          <span class="rec"><i></i>RECORDING DONE</span>
+          <span class="tc">00:47:12</span>
+        </div>
+        <h3>Episode 128: Pricing your expertise</h3>
+        <p class="sub">Example episode. Your part ends when you stop talking.</p>
+        <div class="wave" id="wave" aria-hidden="true"></div>
+        <ul class="steps">
+          <li><span class="chk done">✓</span>Record the conversation<span class="who you">YOU</span></li>
+          <li><span class="chk done">✓</span>Edit video + audio<span class="who us">US</span></li>
+          <li><span class="chk done">✓</span>Cut clips + add captions<span class="who us">US</span></li>
+          <li><span class="chk wip">•</span>Titles, show notes, thumbnail<span class="who us">US</span></li>
+          <li><span class="chk wip">•</span>Publish + schedule everywhere<span class="who us">US</span></li>
+        </ul>
+        <p class="board-foot">Your to-do list for this episode: <b>nothing.</b></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <div class="proof" aria-label="Track record">
+    <div class="wrap">
+      <div class="stat"><b>1,000+</b><span>episodes produced</span></div>
+      <div class="stat"><b>4–5 yrs</b><span>with our longest clients</span></div>
+      <div class="stat"><b>10</b><span>shows max on our roster</span></div>
+      <div class="stat"><b>0</b><span>long-term contracts</span></div>
+    </div>
+  </div>
+
+  <!-- PROBLEM -->
+  <section class="block">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Sound familiar?</p>
+        <h2>Your podcast was supposed to grow the business. <span class="hl">Not become a second job.</span></h2>
+      </div>
+      <div class="pains">
+        <div class="pain"><h3>Episodes pile up unedited</h3><p>Recordings sit in a folder for weeks because editing always loses to client work.</p></div>
+        <div class="pain"><h3>You're managing freelancers</h3><p>One person edits, another makes clips, and you're the project manager in the middle chasing files.</p></div>
+        <div class="pain"><h3>You're not sure it's working</h3><p>You publish, but nobody is asking whether each episode actually moves listeners toward working with you.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- YOU vs US -->
+  <section class="block split" id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">A team you can trust with your show</p>
+        <h2>Here's how the work splits.</h2>
+        <p class="lead">One dedicated team owns your show end to end. No hand-offs to manage, nothing to chase, and the same people learning your voice week after week.</p>
+      </div>
+      <div class="split-grid">
+        <div class="lane you">
+          <p class="eyebrow">Your job</p>
+          <h3 style="font-size:26px">Show up and record.</h3>
+          <ul>
+            <li>Talk about what you know</li>
+            <li>Drop the file in your shared folder</li>
+            <li>Approve episodes if you want to</li>
+          </ul>
+          <p>Then get back to running your business.</p>
+        </div>
+        <div class="lane us">
+          <p class="eyebrow">Our job</p>
+          <h3 style="font-size:26px">Everything after you stop talking.</h3>
+          <ul>
+            <li>Episode planning + strategy</li>
+            <li>Video + audio editing</li>
+            <li>Short-form clips</li>
+            <li>Captions</li>
+            <li>Titles + show notes</li>
+            <li>Thumbnails</li>
+            <li>Publishing to every platform</li>
+            <li>Scheduling + release calendar</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRATEGY -->
+  <section class="block" id="strategy">
+    <div class="wrap strategy-grid">
+      <div class="strategy-copy">
+        <p class="eyebrow">New: show strategy</p>
+        <h2>Better questions make <span class="hl">better episodes.</span></h2>
+        <p class="lead">Editing makes an episode sound good. Strategy makes it worth someone's time. Before you record, we ask the questions that sharpen your show, so every episode has a clear listener, a clear point, and a clear next step.</p>
+        <ul class="qs">
+          <li><b>Who exactly is this episode for?</b><span>One listener in mind beats "anyone who's interested."</span></li>
+          <li><b>What should they do when it ends?</b><span>Book a call, download a guide, tell a colleague. Pick one.</span></li>
+          <li><b>Which guest or topic opens a door for you?</b><span>Your show can build relationships with the people you want to work with.</span></li>
+          <li><b>What's the one clip worth sharing?</b><span>We plan for the moment that travels before you hit record.</span></li>
+        </ul>
+      </div>
+
+      <div class="check" id="show-check">
+        <div>
+          <p class="eyebrow">60-second show check</p>
+          <h3 style="margin-top:8px;font-size:22px">How strategic is your podcast right now?</h3>
+        </div>
+        <div id="check-list"></div>
+        <div class="meter" aria-hidden="true"><i id="meter-fill"></i></div>
+        <div class="result" aria-live="polite">
+          <b id="result-title">Answer the questions above</b>
+          <p id="result-body">Be honest. There are no wrong answers, and we'll talk through them on the call.</p>
+          <a class="btn btn-primary" href="#book">Talk through my answers <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="block process">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Getting started</p>
+        <h2>From first call to first episode.</h2>
+      </div>
+      <ol class="process-list">
+        <li><h3>Discovery call</h3><p>We learn about your business, your audience, and what you want the show to do. You'll know on the call whether we're a fit.</p></li>
+        <li><h3>Strategy session</h3><p>We map your show's listener, format, and goals, and plan your first batch of episodes together.</p></li>
+        <li><h3>Onboarding</h3><p>Shared folder, brand assets, platforms connected. We set it up so sending a recording takes one step.</p></li>
+        <li><h3>You record. We run it.</h3><p>Every episode edited, clipped, captioned, published and scheduled. Every week.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- INCLUDED -->
+  <section class="block" id="included">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">What's included</p>
+        <h2>Everything your show needs. One monthly plan.</h2>
+      </div>
+      <div class="included">
+        <div class="inc new"><span class="tag">New · Strategy</span><h3>Show + episode planning</h3><p>Strategic questions before you record, topic and guest planning, and a clear goal for each episode.</p></div>
+        <div class="inc"><span class="tag">Production</span><h3>Video + audio editing</h3><p>Clean, polished episodes that sound and look like a show people choose to watch.</p></div>
+        <div class="inc"><span class="tag">Production</span><h3>Clips + captions</h3><p>Short-form clips from each episode, captioned and ready for social.</p></div>
+        <div class="inc"><span class="tag">Packaging</span><h3>Titles, show notes, thumbnails</h3><p>The packaging that gets an episode clicked in a crowded feed.</p></div>
+        <div class="inc"><span class="tag">Distribution</span><h3>Publishing + scheduling</h3><p>Uploaded, scheduled and live on your platforms, on a calendar you can see.</p></div>
+        <div class="inc"><span class="tag">Team</span><h3>One team that knows your show</h3><p>The same people every week, so your voice and standards never have to be re-explained.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY 10 -->
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="cap">
+        <div class="big">10<small>shows. That's the cap.</small></div>
+        <div class="cap-copy">
+          <h2 style="font-size:clamp(26px,3.4vw,38px)">Why we stay small on purpose.</h2>
+          <p>Trust comes from attention. Capping our roster at 10 shows means your episodes never wait behind a queue of 50 others, and the people editing your show actually know it. It's a big reason clients have stayed with us for four and five years.</p>
+          <p><strong>Current availability:</strong> <span class="draft">DRAFT: [X] spots open</span></p>
+          <div><a class="btn btn-primary" href="#book">Check if there's a spot for you <span class="arrow" aria-hidden="true">→</span></a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">From our clients</p>
+        <h2>Shows we've produced for years.</h2>
+        <p><span class="draft">DRAFT: replace all three with real client quotes, names and show names</span></p>
+      </div>
+      <div class="quotes">
+        <figure class="quote"><blockquote>[Client quote about how much time they got back.]</blockquote><figcaption><b>[Client name]</b>[Host of Show Name] · [X] years with AuthentIQ</figcaption></figure>
+        <figure class="quote"><blockquote>[Client quote about trusting the team to handle everything.]</blockquote><figcaption><b>[Client name]</b>[Host of Show Name] · [X] years with AuthentIQ</figcaption></figure>
+        <figure class="quote"><blockquote>[Client quote about results: growth, leads, or quality.]</blockquote><figcaption><b>[Client name]</b>[Host of Show Name] · [X] years with AuthentIQ</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIT -->
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Is this a fit?</p>
+        <h2>We're built for a specific kind of host.</h2>
+      </div>
+      <div class="fit">
+        <div class="yes">
+          <h3>A great fit if you…</h3>
+          <ul>
+            <li>Run a business and use your podcast to build trust with buyers</li>
+            <li>Already record, or are ready to commit to a regular schedule</li>
+            <li>Want one team to own production so you never think about it</li>
+            <li>Want help making your episodes more strategic, not just more polished</li>
+          </ul>
+        </div>
+        <div class="no">
+          <h3>Probably not a fit if you…</h3>
+          <ul>
+            <li>Want to stay hands-on with every edit yourself</li>
+            <li>Are looking for the cheapest per-episode editor</li>
+            <li>Aren't ready to record consistently yet</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block" id="faq" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Questions</p>
+        <h2>Before you book.</h2>
+      </div>
+      <div class="faq">
+        <details><summary>What do I actually have to do?</summary><p>Record your episode and send us the file. We handle editing, clips, captions, show notes, thumbnails, publishing and scheduling. If you want to approve episodes before they go live, we'll build that into the process.</p></details>
+        <details><summary>Is there a contract?</summary><p>No. Plans are month-to-month. Clients stay because the work is good, and some have been with us for four and five years.</p></details>
+        <details><summary>How much does it cost?</summary><p>It depends on how often you publish and what you need. We'll recommend a plan on the discovery call so you get an exact number for your show. <span class="draft">DRAFT: add a "plans start at $X/mo" line if you want to pre-qualify</span></p></details>
+        <details><summary>What is show strategy, exactly?</summary><p>Before you record, we work through the questions that make an episode land: who it's for, what you want listeners to do next, which guests and topics open doors for your business, and which moments are worth clipping. You get a clearer show without adding work to your plate.</p></details>
+        <details><summary>I don't have a podcast yet. Can you help?</summary><p>Yes. We'll use the discovery call and strategy session to shape the show's format and audience before your first recording. <span class="draft">DRAFT: confirm you take new shows</span></p></details>
+        <details><summary>Why only 10 shows?</summary><p>So every show gets real attention from people who know it. When the roster is full, we keep a short waitlist.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOK -->
+  <section class="book" id="book">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow" style="color:var(--white)">Free 30-minute discovery call</p>
+        <h2 style="margin-top:14px">Take the podcast <span class="hl">off your plate.</span></h2>
+        <p class="lead">Tell us about your show and your business. We'll ask a few strategic questions, show you how we'd run it, and tell you honestly whether we're the right team.</p>
+      </div>
+      <div class="agenda">
+        <h3>On the call, we'll cover</h3>
+        <ol>
+          <li><b>Your goals.</b> What the show should do for your business.</li>
+          <li><b>Your current workflow.</b> What's eating your time today.</li>
+          <li><b>A quick show review.</b> A few strategic ideas you can use either way.</li>
+          <li><b>Fit and next steps.</b> Plan, pricing, and start date.</li>
+        </ol>
+        <a class="btn btn-primary" href="https://calendly.com/" target="_blank" rel="noopener">Pick a time <span class="arrow" aria-hidden="true">→</span></a>
+        <small><span class="draft">DRAFT: swap in your real booking link</span> · No pressure, no contract.</small>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="logo" aria-hidden="true" style="font-size:16px"><span class="box">AUTHENT</span><span class="iq">IQ</span></span>
+    <span>Done-for-you podcast production · Naples, Florida</span>
+    <span>© 2026 AuthentIQ Marketing</span>
+  </div>
+</footer>
+
+<div class="mobile-cta"><a class="btn btn-primary" href="#book">Book a discovery call <span class="arrow" aria-hidden="true">→</span></a></div>
+
+<script>
+(function () {
+  // Waveform bars for the hero board
+  var wave = document.getElementById('wave');
+  for (var i = 0; i < 48; i++) {
+    var b = document.createElement('span');
+    var h = 18 + Math.abs(Math.sin(i * 0.55) * 60) + (i * 37 % 23);
+    b.style.height = Math.min(h, 100) + '%';
+    wave.appendChild(b);
+  }
+
+  // Show check
+  var questions = [
+    'Each episode is made for one specific listener',
+    'Every episode ends with one clear next step',
+    'Guests and topics are chosen to open business doors',
+    'You plan the shareable clip before you record',
+    'You know which episodes brought in leads'
+  ];
+  var answers = questions.map(function () { return null; });
+  var list = document.getElementById('check-list');
+  questions.forEach(function (q, i) {
+    var row = document.createElement('div');
+    row.className = 'check-q';
+    row.innerHTML = '<span id="q' + i + '">' + q + '</span>' +
+      '<span class="toggle" role="group" aria-labelledby="q' + i + '">' +
+      '<button type="button" class="yes" id="q' + i + '-yes" aria-pressed="false">Yes</button>' +
+      '<button type="button" class="no" id="q' + i + '-no" aria-pressed="false">Not yet</button></span>';
+    list.appendChild(row);
+    row.querySelectorAll('button').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        answers[i] = btn.classList.contains('yes');
+        row.querySelector('.yes').setAttribute('aria-pressed', String(answers[i] === true));
+        row.querySelector('.no').setAttribute('aria-pressed', String(answers[i] === false));
+        update();
+      });
+    });
+  });
+
+  function update() {
+    var answered = answers.filter(function (a) { return a !== null; }).length;
+    var yes = answers.filter(function (a) { return a === true; }).length;
+    document.getElementById('meter-fill').style.width = (answered ? (yes / questions.length) * 100 : 0) + '%';
+    var t = document.getElementById('result-title'), p = document.getElementById('result-body');
+    if (answered < questions.length) {
+      t.textContent = answered + ' of ' + questions.length + ' answered';
+      p.textContent = 'Keep going. There are no wrong answers.';
+      return;
+    }
+    if (yes <= 2) {
+      t.textContent = yes + '/5: Lots of room to grow';
+      p.textContent = "Your show is probably working harder than it needs to. A strategy session could change what every episode does for your business.";
+    } else if (yes <= 4) {
+      t.textContent = yes + '/5: Solid foundation';
+      p.textContent = "You've got the basics. A few sharper questions before each recording could turn good episodes into ones that bring in clients.";
+    } else {
+      t.textContent = '5/5: You think like a strategist';
+      p.textContent = "Your show is in great shape. Now let us take production off your plate so you can keep your focus on the content.";
+    }
+  }
+})();
+</script>
+</body>
+</html>
